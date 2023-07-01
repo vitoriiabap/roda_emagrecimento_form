@@ -13,6 +13,7 @@ class Questao:
                  opcoes,
                  slider_key,
                  questao_key,
+                 valor,
                  alternativa_escolhida='',
                  intensidade=0):
         self.enunciado = enunciado
@@ -21,6 +22,7 @@ class Questao:
         self.opcoes = opcoes
         self.slider_key = slider_key,
         self.questao_key = questao_key
+        self.valor = valor
 
     def gerar_questao(self):
         container = st.container()
@@ -37,11 +39,13 @@ class Questao:
         values = label.split('de')[-1].strip().split('a')
         min_value = int(values[0].strip())
         max_value = int(values[1].strip())
+        st.write(self.alternativa_escolhida[0])
 
         intensidade = st.slider(label=label,
                                 min_value=min_value,
                                 max_value=max_value,
-                                key=self.slider_key)
+                                key=self.slider_key,
+                                value=min_value)
         self.intensidade = intensidade
 
         return intensidade

@@ -1,3 +1,4 @@
+
 enunciado1 = "###### MERECIMENTO: é o que torna alguém ou algo digno de mérito"
 
 opcao1_1 = "A. Sempre senti que eu não sou digna de ter tudo na vida, e todas as vezes que alguma coisa começa a " \
@@ -19,7 +20,7 @@ opcoes2_2 = "B. É habitual eu estar estressada ou irritada e descontar nas pess
 opcoes2_3 = "C. Eu tenho total consciência de como eu reajo as emoções, e toda vez que me percebo emocionalmente" \
             " abalada consigo aos poucos me acalmar e me recompor, me colocando em um estado mais equilibrado."
 
-enunciado3 = "###### AUTORESPONSABILIDADE: Ter a capacidade de assumir para si mesma seus resultados, " \
+enunciado3 = "###### AUTORRESPONSABILIDADE: Ter a capacidade de assumir para si mesma seus resultados, " \
              "independente se positivos ou negativos. Consciência de que é nossa responsabilidade tudo " \
              "que nos acontece."
 
@@ -52,7 +53,7 @@ opcoes5_3 = "C. Meu foco está totalmente voltado para emagrecer, faço tudo q
             "para conquistar o que eu tanto sonho."
 
 enunciado6 = "###### ENFRENTAMENTO Não mascarar o quanto essa vida no automático te custa. Enfrentar a dor " \
-            "da mudança."
+             "da mudança."
 opcoes6_1 = "A. É muito sofrido me olhar no espelho e subir na balança, prefiro não saber como estou " \
             "hoje porque isso me dói e eu prefiro evitar esse confronto com o que me machuca, por isso " \
             "prefiro usar “uma venda nos olhos para não encarar a realidade”."
@@ -85,5 +86,3 @@ opcoes9_2 = "B. Sou o tipo de pessoa que quando acontece alguma coisa que me dei
 opcoes9_3 = "C. Sou o tipo de pessoa que quando acontece alguma coisa que me deixa triste eu consigo " \
             "me reerguer pois sei que mesmo levando pancada da vida ela precisa continuar, e isso não " \
             "me para."
-
-
