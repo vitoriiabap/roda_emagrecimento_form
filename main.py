@@ -109,7 +109,7 @@ lista_questoes.append(questao5)
 st.markdown('---')
 
 # Questão 6
-st.markdown('Questão 5')
+st.markdown('Questão 6')
 
 opcoes6 = [data_questions.opcoes6_1,
            data_questions.opcoes6_2,
