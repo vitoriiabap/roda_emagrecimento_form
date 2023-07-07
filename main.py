@@ -113,7 +113,7 @@ if st.session_state['respostas']:
     with col1:
         st.pyplot(grafico_roda_emagrecimento)
     with col3:
-        st.markdown("#### Vamos analisar seus resultados")
+        st.markdown("#### Vamos analisar seus resultados...")
 
 else:
     respostas = None
