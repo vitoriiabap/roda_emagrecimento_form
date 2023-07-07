@@ -27,6 +27,7 @@ class Questao:
     def gerar_questao(self):
         container = st.container()
         with container:
+            st.markdown(f'Questão - {self.questao_key[-1]}')
             st.markdown(self.enunciado)
             alternativa_marcada = st.radio(label='',
                                            options=self.opcoes, label_visibility='collapsed',
@@ -39,7 +40,6 @@ class Questao:
         values = label.split('de')[-1].strip().split('a')
         min_value = int(values[0].strip())
         max_value = int(values[1].strip())
-        st.write(self.alternativa_escolhida[0])
 
         intensidade = st.slider(label=label,
                                 min_value=min_value,
@@ -47,5 +47,4 @@ class Questao:
                                 key=self.slider_key,
                                 value=min_value)
         self.intensidade = intensidade
-
-        return intensidade
+        st.markdown('---')
