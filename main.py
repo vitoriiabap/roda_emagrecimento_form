@@ -20,6 +20,7 @@ def gerar_objeto_questao(pergunta, indice):
 def normalizar_intensidades(intensidade):
     return intensidade / len(lista_indices_questoes)
 
+
 def gerar_grafico_roda_emagrecimento(questoes):
     conceitos = np.array(list(map(lambda questao: questao.valor, questoes)))
     intensidades = np.array(list(map(lambda questao: questao.intensidade, questoes)))
@@ -28,7 +29,7 @@ def gerar_grafico_roda_emagrecimento(questoes):
 
     fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(10, 10))
 
-    larguras_cones = np.array([2 * np.pi / quantidade_conceitos for conceito in conceitos])
+    larguras_cones = np.fromiter((2 * np.pi / quantidade_conceitos for i in range(9)), dtype='float64')
     posicoes_cones = np.linspace(0.0, 2 * np.pi, quantidade_conceitos, endpoint=False)
     my_cmap = plt.get_cmap('tab10')
 
@@ -105,10 +106,6 @@ respostas = st.button(label='Enviar respostas',
 if st.session_state['respostas']:
     grafico_roda_emagrecimento = gerar_grafico_roda_emagrecimento(lista_questoes)
 
-    st.markdown('')
-    st.markdown('')
-    st.markdown('')
-    st.markdown('')
     col1, col2, col3 = st.columns([1, 0.3, 2])
     with col1:
         st.pyplot(grafico_roda_emagrecimento)
