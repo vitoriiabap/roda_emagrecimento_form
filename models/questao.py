@@ -47,4 +47,4 @@ class Questao:
                                 key=self.slider_key,
                                 value=min_value)
         self.intensidade = intensidade
-        st.markdown('--')
+        st.markdown('---')

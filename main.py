@@ -74,10 +74,10 @@ def gerar_grafico_roda_emagrecimento(questoes):
 st.set_page_config(page_title='Roda do Emagrecimento',
                    layout='wide',
                    initial_sidebar_state='collapsed',
-                   menu_items=None)
+                   menu_items=None,)
 
 # Título do formulário
-st.markdown('### Roda do emagrecimento')
+st.markdown('## Roda do emagrecimento')
 st.markdown('Orientações a respeito do preenchimento do formulário')
 st.markdown('- Orientação 1 \n'
             '- Orientação 2\n'
