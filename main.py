@@ -105,14 +105,12 @@ botao_enviar_respostas = st.button(label='Enviar respostas',
                                    key='respostas')
 
 
-def salvar_plot(chart, fig_name):
-    chart.savefig(fig_name)
-
 # Mensagem após preenchimento
 if st.session_state['respostas']:
     if telefone_client != '':
         # st.success('Obrigado por responder, suas respostas foram enviadas para o email informado.')
         fig = gerar_grafico_roda_emagrecimento(lista_questoes)
+        fig.savefig('roda.png')
         result_report.create_template(client_name=nome_client)
 
         with open('resultado.pdf', 'rb') as pdf_file:
@@ -123,8 +121,6 @@ if st.session_state['respostas']:
             st.pyplot(fig)
             gerar_pdf = st.download_button(label='Baixe seu resultado...',
                                            data=PDFbyte,
-                                           on_click=salvar_plot,
-                                           args=[fig, 'roda.png'],
                                            file_name='test.pdf',
                                            mime='application/octet-stream',
                                            use_container_width=True)
