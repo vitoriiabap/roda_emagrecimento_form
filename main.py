@@ -104,6 +104,10 @@ botao_enviar_respostas = st.button(label='Enviar respostas',
                                    type='primary',
                                    key='respostas')
 
+
+def salvar_plot(chart, fig_name):
+    chart.savefig(fig_name)
+
 # Mensagem após preenchimento
 if st.session_state['respostas']:
     if telefone_client != '':
@@ -119,7 +123,8 @@ if st.session_state['respostas']:
             st.pyplot(fig)
             gerar_pdf = st.download_button(label='Baixe seu resultado...',
                                            data=PDFbyte,
-                                           args=[fig],
+                                           on_click=salvar_plot,
+                                           args=[fig, 'roda.png'],
                                            file_name='test.pdf',
                                            mime='application/octet-stream',
                                            use_container_width=True)
