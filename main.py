@@ -110,6 +110,7 @@ if st.session_state['respostas']:
         # st.success('Obrigado por responder, suas respostas foram enviadas para o email informado.')
         fig = gerar_grafico_roda_emagrecimento(lista_questoes)
         result_report.create_template(client_name=nome_client)
+
         with open('resultado.pdf', 'rb') as pdf_file:
             PDFbyte = pdf_file.read()
 
