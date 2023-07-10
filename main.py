@@ -1,19 +1,20 @@
 import streamlit as st
-from models.questao import Questao
+from models.question import Question
 import data.questions_data as data_questions
 import numpy as np
 import matplotlib.pyplot as plt
+import result_report
 
 
 def gerar_objeto_questao(pergunta, indice):
-    pergunta = Questao(
-        enunciado=pergunta['enunciado'],
-        opcoes=pergunta['opções'],
-        questao_key=f'questao{indice}',
+    pergunta = Question(
+        wording=pergunta['enunciado'],
+        options=pergunta['opções'],
+        question_key=f'questao{indice}',
         slider_key=f'intensidade{indice}',
-        valor=pergunta['valor']
+        concept=pergunta['valor']
     )
-    pergunta.gerar_questao()
+    pergunta.generate_question()
     return pergunta
 
 
@@ -22,14 +23,14 @@ def normalizar_intensidades(intensidade):
 
 
 def gerar_grafico_roda_emagrecimento(questoes):
-    conceitos = np.array(list(map(lambda questao: questao.valor, questoes)))
-    intensidades = np.array(list(map(lambda questao: questao.intensidade, questoes)))
+    conceitos = np.array(list(map(lambda questao: questao.concept, questoes)))
+    intensidades = np.array(list(map(lambda questao: questao.intensity, questoes)))
 
     quantidade_conceitos = len(conceitos)
 
-    fig, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(10, 10))
+    figure, ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(10, 10), dpi=300)
 
-    larguras_cones = np.fromiter((2 * np.pi / quantidade_conceitos for i in range(9)), dtype='float64')
+    larguras_cones = np.fromiter((2 * np.pi / quantidade_conceitos for _ in range(9)), dtype='float64')
     posicoes_cones = np.linspace(0.0, 2 * np.pi, quantidade_conceitos, endpoint=False)
     my_cmap = plt.get_cmap('tab10')
 
@@ -67,15 +68,16 @@ def gerar_grafico_roda_emagrecimento(questoes):
     ax.grid(alpha=0.9, color='white', lw=3)
     ax.spines['polar'].set_visible(False)
     plt.ylim(0, 10)
+    plt.tight_layout()
 
-    return fig
+    return figure
 
 
 # Configuração da página
 st.set_page_config(page_title='Roda do Emagrecimento',
                    layout='wide',
                    initial_sidebar_state='collapsed',
-                   menu_items=None,)
+                   menu_items=None, )
 
 # Título do formulário
 st.markdown('## Roda do emagrecimento')
@@ -97,20 +99,30 @@ lista_indices_questoes = np.arange(1, quantidade_questoes + 1, 1)
 lista_questoes = list(map(gerar_objeto_questao, data_questions.perguntas.values(), lista_indices_questoes))
 
 # Botão para enviar respostas
-respostas = st.button(label='Enviar respostas',
-                      use_container_width=True,
-                      type='primary',
-                      key='respostas')
+botao_enviar_respostas = st.button(label='Enviar respostas',
+                                   use_container_width=True,
+                                   type='primary',
+                                   key='respostas')
 
-# Gerando a Roda
+# Mensagem após preenchimento
 if st.session_state['respostas']:
-    grafico_roda_emagrecimento = gerar_grafico_roda_emagrecimento(lista_questoes)
+    if telefone_client != '':
+        # st.success('Obrigado por responder, suas respostas foram enviadas para o email informado.')
+        fig = gerar_grafico_roda_emagrecimento(lista_questoes)
+        result_report.create_template(client_name=nome_client)
+        with open('resultado.pdf', 'rb') as pdf_file:
+            PDFbyte = pdf_file.read()
 
-    col1, col2, col3 = st.columns([1, 0.3, 2])
-    with col1:
-        st.pyplot(grafico_roda_emagrecimento)
-    with col3:
-        st.markdown("#### Vamos analisar seus resultados...")
-
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.pyplot(fig)
+            gerar_pdf = st.download_button(label='Baixe seu resultado...',
+                                           data=PDFbyte,
+                                           args=[fig],
+                                           file_name='test.pdf',
+                                           mime='application/octet-stream',
+                                           use_container_width=True)
+    else:
+        st.warning('Por favor preencha seu email')
 else:
-    respostas = None
+    botao_enviar_respostas = None
