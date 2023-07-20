@@ -1,3 +1,4 @@
+import os
 import time
 import streamlit as st
 from models.question import Question
@@ -157,7 +158,7 @@ if st.session_state['respostas']:
 
     fig = generate_slimming_circle_plot(lista_questoes)
     result_file_name = f'resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
-    fig.savefig(result_file_name)
+    fig.savefig(os.path.abspath(os.path.join(os.getcwd(), result_file_name)))
     time.sleep(3)
     send_email.enviar_email(client_name=client_name,
                             client_email=client_email,

@@ -56,3 +56,6 @@ def enviar_email(client_name, client_email, file_name):
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     s.quit()
+
+import os
+print(os.path.join(os.getcwd(), 'teste.py'))
