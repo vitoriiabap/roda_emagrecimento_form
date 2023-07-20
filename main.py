@@ -1,3 +1,5 @@
+import time
+
 import streamlit as st
 from models.question import Question
 import data.questions_data as data_questions
@@ -5,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 import datetime
-
+from email import send_email
 
 def generate_question_object(question, indice):
     question = Question(
@@ -158,6 +160,8 @@ if st.session_state['respostas']:
 
     fig = generate_slimming_circle_plot(lista_questoes)
     fig.savefig(f'resultados/resultado_{client_name.lower().strip().replace(" ", "_")}.png')
+    time.sleep(5)
+    send_email.enviar_email()
 
     # result_report.create_template(client_name=client_name)
 
