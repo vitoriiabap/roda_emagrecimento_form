@@ -24,8 +24,14 @@ def enviar_email(client_name, client_email, file_name):
         mantê-lo.</p>
 
     <p>Vamos para os próximos passos?</p>
-    <a href="https://www.google.com" target="_blank">Converse comigo no Whatsapp</a>
+    <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <div style="text-align: center;">
+    <p>
+        <img src=""
+             alt="foto_teste"
+             width="500"
+        style="vertical-align:middle;margin:50px 0px">
+    </p>
 
 </div>
 </body>
@@ -49,6 +55,3 @@ def enviar_email(client_name, client_email, file_name):
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     s.quit()
-
-    import testearquivo
-    testearquivo.teste()
