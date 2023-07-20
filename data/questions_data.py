@@ -1,5 +1,5 @@
-perguntas = {
-    'questão1': {
+perguntas = [
+    {
         'valor': 'MERECIMENTO',
         'enunciado': "###### MERECIMENTO: é o que torna alguém ou algo digno de mérito",
         'opções': ["A. Sempre senti que eu não sou digna de ter tudo na vida, e todas as vezes que alguma "
@@ -9,7 +9,7 @@ perguntas = {
                    "C. Eu tenho certeza absoluta que sou merecedora de ter tudo que eu desejo nessa vida."
                    ]
     },
-    'questão2': {
+    {
         'valor': 'AUTOPERCEPÇÃO',
         'enunciado': "###### AUTOPERCEPÇÃO: Reconhecer sua reação diante de cada emoção e situação, "
                      "ou seja, como as emoções se manifestam em sua vida. Percebendo o que deve ser trabalhado "
@@ -24,7 +24,7 @@ perguntas = {
                    " abalada consigo aos poucos me acalmar e me recompor, me colocando em um estado mais equilibrado."
                    ]
     },
-    'questão3': {
+    {
         'valor': 'AUTORRESPONSABILIDADE',
         'enunciado': "###### AUTORRESPONSABILIDADE: Ter a capacidade de assumir para si mesma seus resultados, "
                      "independente se positivos ou negativos. Consciência de que é nossa responsabilidade tudo "
@@ -38,7 +38,7 @@ perguntas = {
             "C. Acredito que eu sou a única responsável por meus fracassos e por minhas conquistas."
         ]
     },
-    'questão4': {
+    {
         'valor': 'AÇÃO CONSCIENTE',
         'enunciado': "###### AÇÃO CONSCIENTE: Sair do automático, ter comportamentos através de escolhas "
                      "conscientes dos seus resultados e consequências.",
@@ -50,7 +50,7 @@ perguntas = {
                    'C. Eu SEMPRE penso antes de comer, mesmo que às vezes eu “escorregue”.'
                    ]
     },
-    'questão5': {
+    {
         'valor': 'FOCO',
         'enunciado': "###### FOCO: Direcionar sua atenção naquilo que realmente importa, naquilo que realmente é "
                      "importante na sua vida. Somente pessoas com foco são capazes de grandes realizações e "
@@ -63,7 +63,7 @@ perguntas = {
                    "para conquistar o que eu tanto sonho."
                    ]
     },
-    'questão6': {
+    {
         'valor': 'ENFRENTAMENTO',
         'enunciado': "###### ENFRENTAMENTO Não mascarar o quanto essa vida no automático te custa. Enfrentar a dor "
                      "da mudança.",
@@ -78,7 +78,7 @@ perguntas = {
                    "dos meus olhos."
                    ]
     },
-    'questão7': {
+    {
         'valor': 'AÇÃO',
         'enunciado': "###### AÇÃO: É ela que gera os resultados que te realizam.",
         'opções': ["A. Sou hoje uma pessoa que não faz nada para emagrecer.",
@@ -88,7 +88,7 @@ perguntas = {
                    "conquistar esse objetivo."
                    ]
     },
-    'questão8': {
+    {
         'valor': 'AÇÃO CONTÍNUA',
         'enunciado': "###### AÇÃO CONTÍNUA: É a capacidade de sustentar seus comportamentos por um longo período.",
         'opções': ["A. Eu nem começo a fazer alguma coisa pelo meu emagrecimento",
@@ -97,7 +97,7 @@ perguntas = {
                    "questão de tempo e não vou parar até conquistar."
                    ]
     },
-    'questão9': {
+    {
         'valor': 'RESILIÊNCIA',
         'enunciado': "###### RESILIÊNCIA: Capacidade de se recobrar facilmente ou se adaptar à má sorte ou às"
                      " mudanças..",
@@ -111,4 +111,4 @@ perguntas = {
                    "me reerguer pois sei que mesmo levando pancada da vida ela precisa continuar, e isso não "
                    "me para."
                    ]
-    }}
+    }]

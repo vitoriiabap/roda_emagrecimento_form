@@ -1,6 +1,3 @@
-import io
-
-from PyPDF2 import PdfWriter, PdfReader
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen.canvas import Canvas
@@ -20,6 +17,7 @@ def create_template(client_name):
     canvas = Canvas('resultado.pdf', pagesize=A4)
     canvas.setFont(FONT, FONT_SIZE)
     canvas.drawString(LEFT, TOP, text)
+    canvas.setTitle(title='Resultado - Roda do Emagrecimento.')
 
     # Gráfico
     img = ImageReader(image_path)
