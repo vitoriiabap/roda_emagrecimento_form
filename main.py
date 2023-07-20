@@ -156,7 +156,7 @@ if st.session_state['respostas']:
     # st.markdown('Vamos para os próximos passos? [Sim eu quero evoluir!](https://www.google.com.br)')
 
     fig = generate_slimming_circle_plot(lista_questoes)
-    result_file_name = f'resultados/resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
+    result_file_name = f'resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
     fig.savefig(result_file_name)
     time.sleep(3)
     send_email.enviar_email(client_name=client_name,

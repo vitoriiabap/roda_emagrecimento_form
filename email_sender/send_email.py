@@ -28,7 +28,7 @@ def enviar_email(client_name, client_email, file_name):
     <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <div style="text-align: center;">
     <p>
-        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/{file_name}?raw=true"
+        <img src="../{file_name}"
              alt="foto_teste"
              width="500"
         style="vertical-align:middle;margin:50px 0px">
