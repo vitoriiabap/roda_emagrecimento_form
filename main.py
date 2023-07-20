@@ -146,9 +146,6 @@ botao_enviar_respostas = st.button(label='Gerar resultado',
 # Mensagem após preenchimento
 if st.session_state['respostas']:
 
-    st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email_sender informado. Se nao estiver na "
-                    f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
-
     # st.markdown('\n')
     # st.markdown(f'Parabéns {client_name}!')
     # st.markdown('Este exercício identificou possíveis **atitude que podem estar atrapalhando e interrompendo '
@@ -159,12 +156,13 @@ if st.session_state['respostas']:
     # st.markdown('Vamos para os próximos passos? [Sim eu quero evoluir!](https://www.google.com.br)')
 
     fig = generate_slimming_circle_plot(lista_questoes)
-    result_file_name = f'resultados/resultado_{client_name.lower().strip().replace(" ", "_")}.png'
+    result_file_name = f'resultados/resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
     fig.savefig(result_file_name)
     time.sleep(3)
     send_email.enviar_email(client_name=client_name,
-                            client_email=client_email,
-                            result_file_name=result_file_name)
+                            client_email=client_email)
+    st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
+                    f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
 
     # result_report.create_template(client_name=client_name)
 

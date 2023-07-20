@@ -1,8 +1,10 @@
 import smtplib
 import email.message
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
-def enviar_email(result_file_name, client_name, client_email):
+def enviar_email(client_name, client_email):
     html_email_body = f"""
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
@@ -11,7 +13,6 @@ def enviar_email(result_file_name, client_name, client_email):
     <title>Title</title>
 </head>
 <body>
-
     <p>Parabéns, {client_name}!</p>
 
     <p>Este exercício identificou possíveis<strong> atitudes que podem estar atrapalhando e interrompendo a evolução do
@@ -27,8 +28,7 @@ def enviar_email(result_file_name, client_name, client_email):
     <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <div style="text-align: center;">
     <p>
-        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/
-{result_file_name}?raw=true"
+        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/resultado_marcos_vinicius.png?raw=true"
              alt="foto_teste"
              width="500"
         style="vertical-align:middle;margin:50px 0px">
@@ -39,13 +39,15 @@ def enviar_email(result_file_name, client_name, client_email):
 </html>
     """
 
-    msg = email.message.Message()
+    # msg = email.message.Message()
+    msg = MIMEMultipart()
     msg['Subject'] = 'Aqui está seu resultado do TISDE'
     msg['From'] = 'mentoriaviviriba@gmail.com'
     msg['To'] = client_email
     password = 'oxhxkbiasqmsfvby'
-    msg.add_header('Content-Type', 'text/html')
-    msg.set_payload(html_email_body)
+    # msg.add_header('Content-Type', 'text/html')
+    # msg.set_payload(html_email_body)
+    msg.attach(MIMEText(html_email_body, 'html'))
 
     s = smtplib.SMTP('smtp.gmail.com: 587')
     s.starttls()
@@ -53,3 +55,4 @@ def enviar_email(result_file_name, client_name, client_email):
     # Login Credentials for sending email_sender
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+    s.quit()
