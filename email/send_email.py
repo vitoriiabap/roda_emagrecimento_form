@@ -26,7 +26,7 @@ def enviar_email():
     <p>Vamos para os próximos passos?</p>
     <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <p>
-        <img src="../resultados/resultado_marcos_vinicius.png"
+        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/resultado_marcos_vinicius.png?raw=true"
              alt="foto_teste"
              width="500"
         style="vertical-align:middle;margin:50px 0px">
