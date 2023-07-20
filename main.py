@@ -159,9 +159,12 @@ if st.session_state['respostas']:
     # st.markdown('Vamos para os próximos passos? [Sim eu quero evoluir!](https://www.google.com.br)')
 
     fig = generate_slimming_circle_plot(lista_questoes)
-    fig.savefig(f'resultados/resultado_{client_name.lower().strip().replace(" ", "_")}.png')
-    time.sleep(5)
-    send_email.enviar_email()
+    result_file_name = f'resultados/resultado_{client_name.lower().strip().replace(" ", "_")}.png'
+    fig.savefig(result_file_name)
+    time.sleep(3)
+    send_email.enviar_email(client_name=client_name,
+                            client_email=client_email,
+                            result_file_name=result_file_name)
 
     # result_report.create_template(client_name=client_name)
 
