@@ -1,10 +1,10 @@
 import smtplib
-import email.message
+# import email.message
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def enviar_email(client_name, client_email):
+def enviar_email(client_name, client_email, file_name):
     html_email_body = f"""
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
@@ -28,7 +28,7 @@ def enviar_email(client_name, client_email):
     <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <div style="text-align: center;">
     <p>
-        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/resultado_marcos_vinicius.png?raw=true"
+        <img src="https://github.com/vitoriiabap/roda_emagrecimento_form/blob/main/resultados/{file_name}?raw=true"
              alt="foto_teste"
              width="500"
         style="vertical-align:middle;margin:50px 0px">

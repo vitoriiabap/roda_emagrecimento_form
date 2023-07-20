@@ -160,7 +160,9 @@ if st.session_state['respostas']:
     fig.savefig(result_file_name)
     time.sleep(3)
     send_email.enviar_email(client_name=client_name,
-                            client_email=client_email)
+                            client_email=client_email,
+                            file_name=result_file_name)
+
     st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
                     f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
 
