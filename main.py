@@ -1,5 +1,4 @@
 import time
-
 import streamlit as st
 from models.question import Question
 import data.questions_data as data_questions
@@ -7,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 import datetime
-from email import send_email
+from email_sender import send_email
+
 
 def generate_question_object(question, indice):
     question = Question(
@@ -120,11 +120,11 @@ client_name = st.text_input(label='Nome completo')
 client_email = st.text_input(label='Telefone / Email')
 
 if client_name == '' and not validate_email(client_email):
-    st.warning(body='Digite seu nome e um email válido, por favor.')
+    st.warning(body='Digite seu nome e um email_sender válido, por favor.')
 elif client_name == '' and validate_email(client_email):
     st.warning(body='Digite seu nome, por favor.')
 elif client_name != '' and not validate_email(client_email):
-    st.warning(body='Digite um email válido, por favor')
+    st.warning(body='Digite um email_sender válido, por favor')
 else:
     st.success(body='Obrigado por preencher seus dados, agora vamos continuar com o questionário.')
 
@@ -146,7 +146,7 @@ botao_enviar_respostas = st.button(label='Gerar resultado',
 # Mensagem após preenchimento
 if st.session_state['respostas']:
 
-    st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se nao estiver na "
+    st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email_sender informado. Se nao estiver na "
                     f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
 
     # st.markdown('\n')

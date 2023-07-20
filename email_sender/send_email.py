@@ -48,7 +48,7 @@ def enviar_email():
     s = smtplib.SMTP('smtp.gmail.com: 587')
     s.starttls()
 
-    # Login Credentials for sending email
+    # Login Credentials for sending email_sender
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     print('Email enviado')
