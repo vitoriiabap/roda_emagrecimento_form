@@ -75,8 +75,13 @@ def generate_slimming_circle_plot(questions):
     ax.spines['polar'].set_visible(False)
     plt.ylim(0, 10)
     plt.tight_layout()
+    plt.title('Aqui está seu resultado', pad=100, fontsize=25)
 
-    return figure
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    return buffer
 
 
 def validate_email(string):
@@ -148,52 +153,25 @@ botao_enviar_respostas = st.button(label='Gerar resultado',
 
 # Mensagem após preenchimento
 if st.session_state['respostas']:
-
-    # st.markdown('\n')
-    # st.markdown(f'Parabéns {client_name}!')
-    # st.markdown('Este exercício identificou possíveis **atitude que podem estar atrapalhando e interrompendo '
-    #             'a evolução do seu emagrecimento**.')
-    # st.markdown('Ao longo desse processo de transformação física, **é preciso primeiramente conhecer e '
-    #             'desenvolver suas ações comportamentais!**. Dessa forma, você só não conseguirá atingir o seu'
-    #             ' objetivo, mas também defini-lo e mantê-lo.')
-    # st.markdown('Vamos para os próximos passos? [Sim eu quero evoluir!](https://www.google.com.br)')
-
     fig = generate_slimming_circle_plot(lista_questoes)
-    result_file_name = f'resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
-    img = io.BytesIO()
-    plt.savefig(result_file_name, dpi='figure', format='png')
-    # btn = st.download_button(
-    #     label='Download image',
-    #     data=img,
-    #     file_name='teste.png',
-    #     mime='image/png'
-    # )
 
     time.sleep(3)
-    # send_email.enviar_email(client_name=client_name,
-    #                         client_email=client_email,
-    #                         file_name=result_file_name,
-    #                         imagem=img)
 
-    st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
-                    f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
+    email_sent = send_email.enviar_email(client_name=client_name,
+                                        client_email=client_email,
+                                        imagem=fig)
+    if email_sent:
+        st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
+                        f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
+    else:
+        st.error(body='Houve um erro ao enviar o email. Verifique seu email novamente. Caso o erro persista '
+                      'faça o download do seu resultado no botão abaixo e me envie no whatsapp (11) 97486-8606')
 
-
-
-    # result_report.create_template(client_name=client_name)
-
-    # with open('resultado.pdf', 'rb') as pdf_file:
-    #     PDFbyte = pdf_file.read()
-
-    # col1, col2, col3 = st.columns([1.2, 2, 1.2])
-    # nome_client_para_arquivo_pdf = client_name.lower().replace(' ', '_').strip()
-    # with col2:
-    # st.pyplot(fig)
-    # gerar_pdf = st.download_button(label='Baixe seu resultado...',
-    #                                data=PDFbyte,
-    #                                file_name=f'resultado_{nome_client_para_arquivo_pdf}.pdf',
-    #                                mime='application/octet-stream',
-    #                                use_container_width=True)
+    st.download_button(label='Baixar resultado',
+                       data=fig,
+                       file_name=f'resultado_{client_name.strip().lower().replace(" ", "_")}.png',
+                       mime='image/png',
+                       use_container_width=True)
 
 else:
     botao_enviar_respostas = None
