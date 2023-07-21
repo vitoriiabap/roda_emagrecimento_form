@@ -1,9 +1,11 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 
-def enviar_email(client_name, client_email, file_name):
+def enviar_email(client_name, client_email, file_name, imagem):
     html_email_body = f"""
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
@@ -22,16 +24,11 @@ def enviar_email(client_name, client_email, file_name):
         ações
         comportamentais!</strong> Dessa forma, você não só conseguirá atingir o seu objetivo, mas também defini-lo e
         mantê-lo.</p>
+    <img src="{imagem}" alt="Google Drive Image" width="500"/>
 
     <p>Vamos para os próximos passos?</p>
     <a href="https://www.skyvector.com" target="_blank">Converse comigo no Whatsapp</a>
     <div style="text-align: center;">
-    <p>
-        <img src=""
-             alt="foto_teste"
-             width="500"
-        style="vertical-align:middle;margin:50px 0px">
-    </p>
 
 </div>
 </body>
@@ -44,9 +41,18 @@ def enviar_email(client_name, client_email, file_name):
     msg['From'] = 'mentoriaviviriba@gmail.com'
     msg['To'] = client_email
     password = 'oxhxkbiasqmsfvby'
-    # msg.add_header('Content-Type', 'text/html')
-    # msg.set_payload(html_email_body)
-    msg.attach(MIMEText(html_email_body, 'html'))
+    msg.add_header('Content-Type', 'text/html')
+    msg.set_payload(html_email_body)
+    #msg.attach(MIMEText(html_email_body, 'html'))
+    # attchment = open(imagem, 'rb')
+    #
+    # att = MIMEBase('application', 'octet-stream')
+    # att.set_payload(attchment.read())
+    # encoders.encode_base64(att)
+    #
+    # att.add_header('Content-Disposition', f'attachment; filename=teste.png')
+    # attchment.close()
+    # msg.attach(att)
 
     s = smtplib.SMTP('smtp.gmail.com: 587')
     s.starttls()

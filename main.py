@@ -1,3 +1,5 @@
+import base64
+import io
 import os
 import time
 import streamlit as st
@@ -158,14 +160,25 @@ if st.session_state['respostas']:
 
     fig = generate_slimming_circle_plot(lista_questoes)
     result_file_name = f'resultado_{client_name.lower().strip().replace(" ", "_").replace("ó", "o")}.png'
-    fig.savefig(os.path.abspath(os.path.join(os.getcwd(), result_file_name)))
+    img = io.BytesIO()
+    plt.savefig(result_file_name, dpi='figure', format='png')
+    # btn = st.download_button(
+    #     label='Download image',
+    #     data=img,
+    #     file_name='teste.png',
+    #     mime='image/png'
+    # )
+
     time.sleep(3)
-    send_email.enviar_email(client_name=client_name,
-                            client_email=client_email,
-                            file_name=result_file_name)
+    # send_email.enviar_email(client_name=client_name,
+    #                         client_email=client_email,
+    #                         file_name=result_file_name,
+    #                         imagem=img)
 
     st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
                     f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
+
+
 
     # result_report.create_template(client_name=client_name)
 
