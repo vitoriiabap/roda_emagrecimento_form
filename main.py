@@ -161,7 +161,7 @@ if st.session_state['respostas']:
                         f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
     else:
         st.error(body='Houve um erro ao enviar o email. Verifique seu email novamente. Caso o erro persista '
-                      'faça o download do seu resultado no botão abaixo e me envie no whatsapp (11) 97821-3599')
+                      'faça o download do seu resultado no botão abaixo e me envie no whatsapp (11) 978213599')
 
     st.download_button(label='Baixar resultado',
                        data=fig,
