@@ -126,7 +126,7 @@ client_name = st.text_input(label='Nome completo')
 client_email = st.text_input(label='Email')
 
 if client_name == '' and not validate_email(client_email):
-    st.warning(body='Digite seu nome e um email_sender válido, por favor.')
+    st.warning(body='Digite seu nome e um email válido, por favor.')
 elif client_name == '' and validate_email(client_email):
     st.warning(body='Digite seu nome, por favor.')
 elif client_name != '' and not validate_email(client_email):
