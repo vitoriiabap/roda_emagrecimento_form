@@ -10,14 +10,15 @@ def enviar_email(client_name, client_email, imagem):
 
     msg = MIMEMultipart()
     msg['From'] = 'mentoriaviviriba@gmail.com'
-    msg['To'] = client_email
+    recipients = [client_email, 'mentoriaviviriba@gmail.com']
+    msg['To'] = ', '.join(recipients)
     msg['Subject'] = 'Aqui está seu resultado do TISDE'
     password = 'oxhxkbiasqmsfvby'
 
     msg.attach(MIMEText(html_content, 'html'))
 
     imagem_anexo = MIMEImage(imagem.read())
-    image_name = f'resultado_{client_name.strip().lower().replace(" ", "_")}'
+    image_name = f'resultado_{client_name.strip().lower().replace(" ", "_")}.jpg'
     imagem_anexo.add_header('Content-Disposition', 'attachment', filename=image_name)
     msg.attach(imagem_anexo)
 
@@ -31,5 +32,5 @@ def enviar_email(client_name, client_email, imagem):
         return True
 
     except Exception as e:
-        print('Erro ao enviar o email.')
+        print(f'{e}. Erro ao enviar o email.')
         return False

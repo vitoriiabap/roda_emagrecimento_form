@@ -1,6 +1,4 @@
-import base64
 import io
-import os
 import time
 import streamlit as st
 from models.question import Question
@@ -125,7 +123,7 @@ st.markdown('3. Escolha o nível da sua afirmação arrastando o cursor do mouse
 
 # Informações do cliente
 client_name = st.text_input(label='Nome completo')
-client_email = st.text_input(label='Telefone / Email')
+client_email = st.text_input(label='Email')
 
 if client_name == '' and not validate_email(client_email):
     st.warning(body='Digite seu nome e um email_sender válido, por favor.')
@@ -154,18 +152,16 @@ botao_enviar_respostas = st.button(label='Gerar resultado',
 # Mensagem após preenchimento
 if st.session_state['respostas']:
     fig = generate_slimming_circle_plot(lista_questoes)
-
     time.sleep(3)
-
     email_sent = send_email.enviar_email(client_name=client_name,
-                                        client_email=client_email,
-                                        imagem=fig)
+                                         client_email=client_email,
+                                         imagem=fig)
     if email_sent:
         st.success(body=f"Parabéns, {client_name}! Seu resultado foi enviado para o email informado. Se não estiver na "
                         f"sua Caixa de Entrada, por favor verifique na Caixa de Spans ;)")
     else:
         st.error(body='Houve um erro ao enviar o email. Verifique seu email novamente. Caso o erro persista '
-                      'faça o download do seu resultado no botão abaixo e me envie no whatsapp (11) 97486-8606')
+                      'faça o download do seu resultado no botão abaixo e me envie no whatsapp (11) 97821-3599')
 
     st.download_button(label='Baixar resultado',
                        data=fig,
